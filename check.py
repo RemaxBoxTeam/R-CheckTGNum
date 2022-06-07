@@ -1,11 +1,11 @@
 from platform import platform
 import sys , os
-from tokenize import cookie_re 
+from tokenize import cookie_re
 from time import sleep
 import asyncio
 try:
-    
-    import colorama , pyfiglet 
+
+    import colorama , pyfiglet
     from telethon import TelegramClient , events
     import telethon
 
@@ -17,8 +17,8 @@ except:
         import telethon
     else:
         os.system("pip3 install telethon pyfiglet colorama")
-        import colorama , pyfiglet 
-        from telethon import TelegramClient , events 
+        import colorama , pyfiglet
+        from telethon import TelegramClient , events
         import telethon
 
 
@@ -62,7 +62,7 @@ async def checksnumber(number):
         client = TelegramClient("testor",api_id,api_hash)
         await client.connect()
         await client.send_code_request(number)
-        return (gn + "[-] Your number is not banned , Your number is correct . "+ cv ) 
+        return (gn + "[-] Your number is not banned , Your number is correct . "+ cv )
     except telethon.errors.rpcerrorlist.PhoneNumberInvalidError:
         return (rd + "[=] Your number is invalid , Try again :) " + cv)
     except telethon.errors.rpcerrorlist.PhoneNumberBannedError:
@@ -71,7 +71,7 @@ async def checksnumber(number):
 
 async def checkmnumber(file):
 
-    numberx = open("file.txt","r")
+    numberx = open(file,"r")
     for i in numberx:
         znm = i.strip()
         try:
@@ -95,7 +95,7 @@ if selector == "1":
         loop = asyncio.get_event_loop()
         print (loop.run_until_complete(checksnumber(number)))
     else:
-        asyncio.run(checksnumber())
+        print(asyncio.run(checksnumber(number)))
 elif selector == "2":
     print (gn + "[-] You selected first Option :)")
     file = input(bl + "[-] Please Enter your number list of file txt\n\nEX : number.txt\n\n--> ")
@@ -104,5 +104,4 @@ elif selector == "2":
         loop = asyncio.get_event_loop()
         loop.run_until_complete(checkmnumber(file))
     else:
-        asyncio.run(checkmnumber())
-        
+        asyncio.run(checkmnumber(file))
